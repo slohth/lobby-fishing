@@ -1,0 +1,33 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id 'java'
+}
+
+group 'dev.slohth'
+version 'DEV'
+
+repositories {
+    mavenCentral()
+//    maven {
+//        url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+//    }
+    maven {
+        url "https://repo.codemc.io/repository/nms/"
+    }
+}
+
+dependencies {
+//    compileOnly "org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT"
+    compileOnly(group: 'org.spigotmc', name: 'spigot', version: '1.17.1-R0.1-SNAPSHOT')
+}
+
+build {
+    dependsOn shadowJar
+}
+
+shadowJar {
+    relocate "kotlin", "dev.slohth.lobbyfishing.libs.kotlin"
+}
+
+shadowJar.shouldRunAfter build

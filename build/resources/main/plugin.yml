@@ -1,0 +1,5 @@
+main: dev.slohth.lobbyfishing.plugin.LobbyFishingPlugin
+name: "FishingPlugin"
+version: "DEV"
+author: "Brandon @slohth"
+api-version: 1.17
