@@ -2,8 +2,11 @@ package dev.slohth.lobbyfishing.region
 
 import org.bukkit.entity.Player
 import org.bukkit.util.BoundingBox
+import java.util.*
 
-class Region {
+class Region(var name: String) {
+
+    val id = UUID.randomUUID()
 
     val subregions: MutableList<BoundingBox> = ArrayList()
     val exclusions: MutableList<BoundingBox> = ArrayList()
