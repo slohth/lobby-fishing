@@ -9,13 +9,20 @@ class RegionManager(private val core: LobbyFishing) {
     val regions: MutableMap<UUID, Region> = HashMap()
 
     fun new(name: String): Boolean {
-        if (getFromName(name) != null) return false
-
+        val region = Region(name)
+        if (fromName(name) != null) return false
+        if (fromID(region.id) != null) return false
+        regions[region.id] = region
         return true
     }
 
-    fun getFromName(name: String): Region? {
+    fun fromName(name: String): Region? {
         for (region in regions.values) if (region.name.lowercase() == name.lowercase()) return region
+        return null
+    }
+
+    fun fromID(id: UUID): Region? {
+        for (region in regions.values) if (region.id == id) return region
         return null
     }
 

@@ -1,0 +1,15 @@
+custom-fish:
+  enabled: true
+  tiers:
+    mythical:
+      display: "&d&lMYTHICAL"
+      icon: "&d✦✦✦"
+    legendary:
+      display: "&6&lLEGENDARY"
+      icon: "&6✦✦"
+    rare:
+      display: "&b&lRARE"
+      icon: "&b✦"
+    normal:
+      display: "&7Normal"
+      icon: ""
