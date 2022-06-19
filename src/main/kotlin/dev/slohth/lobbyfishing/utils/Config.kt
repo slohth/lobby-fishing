@@ -9,7 +9,9 @@ import java.io.IOException
 
 enum class Config(private val identifier: String) {
 
-    OPTIONS("config");
+    OPTIONS("config"),
+    MENUS("menus"),
+    FISH("fish");
 
     private val file: File
     private val config: YamlConfiguration

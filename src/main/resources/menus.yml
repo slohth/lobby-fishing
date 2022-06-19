@@ -1,0 +1,14 @@
+region-editor:
+  main-menu:
+    name: "✦ Region Editor ✦"
+    pattern:
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
+    items:
+      region-item:
+        key: "R"
+        item: '{name:"&7#%region_id% &d%region_name%",lore:["&7Click to edit this region."]}'
