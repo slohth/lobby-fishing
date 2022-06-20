@@ -8,7 +8,7 @@ abstract class Button {
     var icon: ItemStack? = null
         private set
 
-    abstract fun clicked(player: Player?)
+    abstract fun clicked(player: Player)
 
     fun setIcon(icon: ItemStack?): Button {
         this.icon = icon

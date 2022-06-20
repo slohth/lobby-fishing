@@ -51,6 +51,9 @@ object ItemSerializer {
                 "owner" -> {
                     if (item.type() == Material.PLAYER_HEAD) item.skull(value.asString)
                 }
+                "texture" -> {
+                    if (item.type() == Material.PLAYER_HEAD) item.texture(value.asString)
+                }
                 "durability" -> {
                     item.durability(value.asInt)
                 }

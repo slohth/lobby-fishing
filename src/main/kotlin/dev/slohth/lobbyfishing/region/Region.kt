@@ -42,7 +42,7 @@ class Region(var name: String) {
 
     fun getIcon(): ItemStack {
         val builder = ItemBuilder(Config.MENUS.getConfig()
-            .getString("region-editor.main-menu.items.region-item.item")!!)
+            .getString("region-editor.main-menu.items.region-item")!!)
 
         builder.type(Material.PLAYER_HEAD).texture(
             when (world.environment) {
