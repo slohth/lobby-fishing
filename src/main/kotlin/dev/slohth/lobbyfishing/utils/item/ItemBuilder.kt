@@ -55,7 +55,7 @@ class ItemBuilder {
 
     fun lore(lore: List<String>): ItemBuilder { meta.lore = color(lore); return this }
 
-    fun lore(): MutableList<String> = ArrayList(meta.lore)
+    fun lore(): MutableList<String> = if (meta.lore.isNullOrEmpty()) ArrayList() else ArrayList(meta.lore)
 
     fun appendLore(lore: String): ItemBuilder = lore(lore().plus(lore))
 

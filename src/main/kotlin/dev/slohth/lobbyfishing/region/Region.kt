@@ -42,7 +42,7 @@ class Region(var name: String) {
 
     fun getIcon(): ItemStack {
         val builder = ItemBuilder(Config.MENUS.getConfig()
-            .getString("region-editor.main-menu.items.region-item")!!)
+            .getString("region-editor.main-menu.items.region-item.item")!!)
 
         builder.type(Material.PLAYER_HEAD).texture(
             when (world.environment) {
@@ -52,7 +52,10 @@ class Region(var name: String) {
                 else -> throw IOException("Invalid world type detected!")
             }.texture
         ).name {
-            name -> name.replace("%region_id%", id.toString().substring(0, 6))
+            s -> s.replace("%region_id%", id.toString().substring(0, 6))
+                .replace("%region_name%", name)
+        }.lore {
+            s -> s.replace("%region_id%", id.toString().substring(0, 6))
                 .replace("%region_name%", name)
         }.localisedName(id.toString())
 

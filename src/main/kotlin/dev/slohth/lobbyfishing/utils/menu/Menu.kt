@@ -3,8 +3,9 @@ package dev.slohth.lobbyfishing.utils.menu
 import dev.slohth.lobbyfishing.utils.CC.color
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
@@ -21,6 +22,12 @@ abstract class Menu(private val plugin: JavaPlugin, var title: String, var rows:
         Bukkit.getPluginManager().registerEvents(this, plugin)
     }
 
+    @EventHandler
+    fun onMenuClick(e: InventoryClickEvent) {
+        if (!inventory.viewers.contains(e.whoClicked) || e.whoClicked !is Player) return
+        e.isCancelled = true
+        if (buttons.containsKey(e.slot)) buttons[e.slot]!!.clicked(e.whoClicked as Player)
+    }
     fun applyMenuPattern(pattern: MenuPattern) {
         items.putAll(pattern.getItems())
         buttons.putAll(pattern.getButtons())
@@ -65,7 +72,7 @@ abstract class Menu(private val plugin: JavaPlugin, var title: String, var rows:
     }
 
     fun close() {
-        InventoryCloseEvent.getHandlerList().unregister(this)
+        InventoryClickEvent.getHandlerList().unregister(this)
         items.clear()
         buttons.clear()
         Bukkit.getScheduler()
