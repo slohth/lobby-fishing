@@ -15,12 +15,12 @@ class RegionManager(private val core: LobbyFishing) {
 
     val regions: ScrollableList<Region> = ScrollableList()
 
-    fun new(name: String): Boolean {
+    fun new(name: String): Region? {
         val region = Region(name)
-        if (fromName(name) != null) return false
-        if (fromID(region.id) != null) return false
+        if (fromName(name) != null) return null
+        if (fromID(region.id) != null) return null
         regions.linkedList.add(region)
-        return true
+        return region
     }
 
     fun fromName(name: String): Region? {
@@ -52,7 +52,9 @@ class RegionManager(private val core: LobbyFishing) {
             }
         }
 
-        val menu = object: Menu(core.plugin, c.getString("$path.name")!!, c.getStringList("$path.pattern").size) {}
+        val menu = object: Menu(core.plugin, c.getString("$path.name")!!, c.getStringList("$path.pattern").size) {
+            override fun onClosed(player: Player) {}
+        }
         val pattern = MenuPattern(c.getStringList("$path.pattern"))
 
         for (item in c.getConfig().getConfigurationSection("$path.items")!!.getKeys(false)) {

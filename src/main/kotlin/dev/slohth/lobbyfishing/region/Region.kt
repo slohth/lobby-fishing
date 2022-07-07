@@ -62,4 +62,8 @@ class Region(var name: String) {
         return builder.build()
     }
 
+    fun openEditMenu(player: Player) {
+
+    }
+
 }
